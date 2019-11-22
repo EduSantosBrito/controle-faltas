@@ -35,13 +35,12 @@ function ClassroomFaultScreen(props) {
 					},
 					method: "PUT",
 					body: JSON.stringify(student)
-				}).then(() => {
-					props.navigation.state.params.fetchClassrooms();
-					props.navigation.goBack();
 				});
 			})
 		);
 		setIsSubmiting(false);
+		props.navigation.state.params.fetchClassrooms();
+		props.navigation.goBack();
 	}
 
 	async function handleDelete() {

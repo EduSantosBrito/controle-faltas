@@ -4,6 +4,7 @@ import { Text, ActivityIndicator, FlatList } from "react-native";
 import FloatingButton from "../shared/FloatingButton";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { ListItem } from "react-native-elements";
+import { withNavigation } from "react-navigation";
 import ContainerList from "../shared/ContainerList";
 
 function ClassroomListScreen(props) {
@@ -38,6 +39,12 @@ function ClassroomListScreen(props) {
 	function keyExtractor(item, index) {
 		return index.toString();
 	}
+
+	useEffect(() => {
+		this.focusListener = props.navigation.addListener("didFocus", () => {
+			fetchClassrooms();
+		});
+	}, []);
 
 	useEffect(() => {
 		fetchClassrooms();
@@ -103,4 +110,4 @@ function ClassroomListScreen(props) {
 	);
 }
 
-export default ClassroomListScreen;
+export default withNavigation(ClassroomListScreen);
